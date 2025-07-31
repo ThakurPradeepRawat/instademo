@@ -2,7 +2,9 @@ from flask import Flask, render_template, request, redirect
 import datetime
 import os
 import psycopg2
-DATABASE_URL = "postgresql://instadb_22cb_user:T2hXnPFMuju53ZrXTbMRZmEIDIl32RI5@dpg-d25kkfh5pdvs73dn0n2g-a.oregon-postgres.render.com/instadb_22cb"
+from dotenv import load_dotenv
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
 conn = psycopg2.connect(DATABASE_URL)
 cur = conn.cursor()
 cur.execute('''
